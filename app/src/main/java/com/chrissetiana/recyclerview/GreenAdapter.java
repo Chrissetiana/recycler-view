@@ -12,11 +12,12 @@ import android.widget.TextView;
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
     private static final String LOG_TAG = GreenAdapter.class.getSimpleName();
-
+    private int viewHolderCount;
     private int numItems;
 
     GreenAdapter(int numOfItems) {
         numItems = numOfItems;
+        viewHolderCount = 0;
     }
 
     @NonNull
@@ -28,8 +29,17 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
+        NumberViewHolder viewHolder = new NumberViewHolder(view);
+        viewHolder.viewHolderIndex.setText("ViewHolder index: " + viewHolderCount);
 
-        return new NumberViewHolder(view);
+        int backgroundColor = ColorUtils.getViewHolderBackgroundColorFromInstance(context, viewHolderCount);
+        viewHolder.itemView.setBackgroundColor(backgroundColor);
+
+        viewHolderCount++;
+
+        Log.d(LOG_TAG, "onCreateViewHolder: number of ViewHolders created: " + viewHolderCount);
+
+        return viewHolder;
     }
 
     @Override
@@ -45,10 +55,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     class NumberViewHolder extends RecyclerView.ViewHolder {
         TextView listItemNumberView;
+        TextView viewHolderIndex;
 
         NumberViewHolder(View itemView) {
             super(itemView);
             listItemNumberView = itemView.findViewById(R.id.tv_item_number);
+            viewHolderIndex = itemView.findViewById(R.id.tv_view_holder_instance);
         }
 
         void bind(int listIndex) {
