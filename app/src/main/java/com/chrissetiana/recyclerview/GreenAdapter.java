@@ -20,6 +20,11 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         viewHolderCount = 0;
     }
 
+    @Override
+    public int getItemCount() {
+        return numItems;
+    }
+
     @NonNull
     @Override
     public NumberViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -46,11 +51,6 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     public void onBindViewHolder(@NonNull GreenAdapter.NumberViewHolder holder, int position) {
         Log.d(LOG_TAG, "#" + position);
         holder.bind(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return numItems;
     }
 
     class NumberViewHolder extends RecyclerView.ViewHolder {

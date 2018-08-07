@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,5 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new GreenAdapter(NUM_LIST_ITEMS);
         numberList.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.action_refresh:
+                adapter = new GreenAdapter(NUM_LIST_ITEMS);
+                numberList.setAdapter(adapter);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
