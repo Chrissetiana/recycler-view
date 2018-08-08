@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat;
 
 public class ColorUtils {
 
-    public static int getViewHolderBackgroundColorFromInstance(Context context, int instanceNum) {
+    public static int getViewHolderBackgroundColor(Context context, int instanceNum) {
         switch (instanceNum) {
             case 0:
                 return ContextCompat.getColor(context, R.color.material50Green);
