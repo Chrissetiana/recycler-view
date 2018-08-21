@@ -32,13 +32,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     @NonNull
     @Override
     public NumberViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.number_list_item;
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        View view = inflater.inflate(layoutIdForListItem, viewGroup, false);
-        NumberViewHolder viewHolder = new NumberViewHolder(view);
         String msg = "ViewHolder index: " + viewHolderCount;
+
+        Context context = viewGroup.getContext();
+        View view = LayoutInflater.from(context).inflate(layoutIdForListItem, viewGroup, false);
+        NumberViewHolder viewHolder = new NumberViewHolder(view);
         viewHolder.viewHolderIndex.setText(msg);
 
         int backgroundColor = ColorUtils.getViewHolderBackgroundColor(context, viewHolderCount);
